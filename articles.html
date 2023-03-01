@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h3>Makaleler</h3>
+    <hr class="border-5">
+    <form action="/search" method="post">
+        <div class="input-group pb-3">
+            <input type="search" name="keyword" class="form-control bg-dark-subtle" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-dark">Ara</button>
+          </div>
+    </form>
+    {% if articles %}
+        <ul class="list-group">
+        {% for article in articles %}
+            <li class="list-group-item border border-dark text-monospace mb-3"><a href="article/{{article.id}}">Başlık : {{article.title}}</a><br>   Yazar : {{article.author}}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-danger">Bu blokta henüz bir makale yok</div>
+    {% endif %}
+{% endblock %}

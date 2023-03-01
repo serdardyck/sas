@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="mt-4 p-5 bg-dark text-white rounded text-center text-monospace mb-5">
+        <h3>Tatlı Sözlüge Hoşgeldiniz.</h3>
+        <p>Bu blogta geliştiriciler olarak blog yazılarınızı paylaşabilirsiniz ve insanlara yardımcı olabilirsiniz.</p>
+        <a href="/articles"><button type ="button" class="btn btn-secondary">Makalelere Git</button></a>
+    </div>
+        {% if articless %}
+        <h2 class="text-center text-monospace">Just Code</h2>
+        {% for article in articless %}
+                <div class="mt-4 p-5 bg-dark text-white rounded">
+                    <div class="text-center">
+                        <h4>{{article.title}}</h4>
+                            Yazar :  {{article.author}} || Tarih : {{article.created_date}}
+                        <hr>
+                    </div>
+                    <br>
+                    <h4>İçerik : </h4>
+                    <div class="bg-white text-dark">
+                        {{article.content|safe}}
+                    </div> 
+                </div>       
+        {% endfor %}
+        {% else %}
+            <div class="alert alert-danger">Bu blokta henüz bir makale yok</div>
+        {% endif %}
+{% endblock %}
